@@ -1,0 +1,96 @@
+import React from 'react';
+function App() {
+  const name = "AARAV SHARMA";
+  const rollNo = "22AM1A0501";
+  const gpa = 8.9;
+  const isPassed = true;
+
+  return (
+    <div>
+      <h2>Student Profile</h2>
+
+      <p>Name: {name}</p>
+      <p>Roll Number: {rollNo}</p>
+      <p>CGPA: {gpa} / 10</p>
+
+      <p>
+        Status: {isPassed ? "PROMOTED" : "DETAINED"}
+      </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+5b
+File 1: HeaderClass.js (Class Component)
+
+import React, { Component } from 'react';
+class HeaderClass extends Component {
+  render() {
+    return (
+      <header>
+        <h1>AI & ML Department Portal</h1>
+        <p>Class Component Architecture</p>
+      </header>
+    );
+  }
+}
+
+export default HeaderClass;
+[9:22 pm, 30/10/2026] Herro: File 2: CourseCardFunction.js (Functional Component)
+import React from 'react';
+function CourseCardFunction(props) {
+  return (
+    <div>
+      <h3>{props.code}: {props.title}</h3>
+      <p>Credits: {props.credits}</p>
+      <p>Instructor: {props.faculty}</p>
+    </div>
+  );
+}
+
+export default CourseCardFunction;
+
+File 3: App.js (Parent Component)
+
+import React from 'react';
+import HeaderClass from './HeaderClass';
+import CourseCardFunction from './CourseCardFunction';
+
+function App() {
+  return (
+    <div>
+      <HeaderClass />
+
+      <h2>III B.Tech Enrolled Courses</h2>
+
+      <CourseCardFunction
+        code="AIML301"
+        title="Deep Learning"
+        credits="4"
+        faculty="Dr. R. K. Verma"
+      />
+
+      <CourseCardFunction
+        code="AIML302"
+        title="Natural Language Processing"
+        credits="3"
+        faculty="Prof. S. Mehta"
+      />
+    </div>
+  );
+}
+
+export default App;
+ Output
+AI & ML Department Portal
+Class Component Architecture
+III B.Tech Enrolled Courses
+AIML301: Deep Learning
+Credits: 4
+Instructor: Dr. R. K. Verma
+AIML302: Natural Language Processing
+Credits: 3
+Instructor: Prof. S. Mehta

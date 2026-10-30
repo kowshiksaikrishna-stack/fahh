@@ -1,0 +1,68 @@
+3. Program Code 
+File 1: HeaderClass.js (Class Component) 
+JavaScript: 
+
+import React, { Component } from 'react'; 
+class HeaderClass extends Component { 
+render() { 
+return ( 
+<header style={{ backgroundColor: '#1a365d', color: '#ffffff', padding: '15px' }}> 
+<h1 style={{ margin: 0 }}>AI & ML Department Portal</h1> 
+<p style={{ margin: 0, fontSize: '14px' }}>Class Component Architecture</p> 
+</header> 
+); 
+} 
+} 
+export default HeaderClass; 
+
+
+File 2: CourseCardFunction.js (Functional Component) 
+JavaScript: 
+
+
+import React from 'react'; 
+function CourseCardFunction(props) { 
+return ( 
+<div style={{ border: '1px solid #cbd5e1', borderRadius: '8px', padding: '15px', margin: '10px 0' }}> 
+<h3 style={{ margin: '0 0 8px 0', color: '#0f172a' }}>{props.code}: {props.title}</h3> 
+<p style={{ margin: '0 0 5px 0' }}><strong>Credits:</strong> {props.credits}</p> 
+<p style={{ margin: 0 }}><strong>Instructor:</strong> {props.faculty}</p> 
+</div> 
+); 
+} 
+export default CourseCardFunction; 
+
+
+
+File 3: App.js (Parent Component with Nesting) 
+JavaScript: 
+
+
+import React from 'react'; 
+import HeaderClass from './HeaderClass'; 
+import CourseCardFunction from './CourseCardFunction'; 
+function App() { 
+return ( 
+<div style={{ maxWidth: '600px', margin: '0 auto', fontFamily: 'sans-serif' }}> 
+{/* Nesting Class Component */} 
+<HeaderClass /> 
+<main style={{ padding: '20px' }}> 
+<h2>III B.Tech Enrolled Courses</h2> 
+{/* Nesting Functional Components with Props */} 
+<CourseCardFunction  
+code="AIML301"  
+title="Deep Learning & Neural Networks"  
+credits="4"  
+faculty="Dr. R. K. Verma"  
+/> 
+<CourseCardFunction  
+code="AIML302"  
+title="Natural Language Processing"  
+credits="3"  
+faculty="Prof. S. Mehta"  
+/> 
+</main> 
+</div> 
+); 
+} 
+export default App;

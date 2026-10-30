@@ -1,0 +1,30 @@
+import React from 'react'; 
+function App() { 
+// Dynamic JavaScript variables 
+const student = { 
+name: "AARAV SHARMA", 
+rollNo: "22AM1A0501", 
+gpa: 8.9, 
+isPassed: true, 
+}; 
+const imageSrc = "https://via.placeholder.com/100"; 
+return ( 
+<div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}> 
+<h2 style={{ color: '#2c3e50' }}>Student Profile (JSX Demo)</h2> 
+{/* Dynamic Expression Embedding */} 
+<p><strong>Name:</strong> {student.name}</p> 
+<p><strong>Roll Number:</strong> {student.rollNo}</p> 
+<p><strong>CGPA:</strong> {student.gpa} / 10</p> 
+{/* Dynamic Attribute Binding */} 
+<img src={imageSrc} alt="Student Avatar" style={{ borderRadius: '50%' }} /> 
+{/* Embedded Conditional Logic */} 
+<div style={{ marginTop: '15px' }}> 
+<strong>Academic Status: </strong> 
+<span style={{ color: student.isPassed ? 'green' : 'red', fontWeight: 'bold' }}> 
+{student.isPassed ? 'PROMOTED' : 'DETAINED'} 
+</span> 
+</div> 
+</div> 
+); 
+} 
+export default App;
