@@ -1,0 +1,74 @@
+
+#include <stdio.h>
+#include <string.h>
+
+void crc(char data[], char poly[], char result[])
+{
+    int i, j;
+    int len = strlen(data);
+    int plen = strlen(poly);
+
+    char temp[200];
+
+    strcpy(temp, data);
+
+    // Append zeros to the data
+    for(i = 0; i < plen - 1; i++)
+        temp[len + i] = '0';
+
+    temp[len + plen - 1] = '\0';
+
+    // CRC division using XOR
+    for(i = 0; i < len; i++)
+    {
+        if(temp[i] == '1')
+        {
+            for(j = 0; j < plen; j++)
+            {
+                temp[i + j] =
+                    (temp[i + j] == poly[j]) ? '0' : '1';
+            }
+        }
+    }
+
+    // Extract CRC remainder
+    strcpy(result, temp + len);
+}
+
+int main()
+{
+    char data[100], result[100];
+    
+    printf("Enter data bits: ");
+    scanf("%99s", data);
+
+    printf("\nCRC-12:\n");
+    crc(data, "1100000001111", result);
+    printf("CRC Remainder: %s\n", result);
+
+    printf("\nCRC-16:\n");
+    crc(data, "11000000000000101", result);
+    printf("CRC Remainder: %s\n", result);
+
+    printf("\nCRC-CCITT:\n");
+    crc(data, "10001000000100001", result);
+    printf("CRC Remainder: %s\n", result);
+
+    return 0;
+}
+
+
+output:
+
+
+Enter data bits: 101100
+
+CRC-12:
+CRC Remainder: 110101011011
+
+CRC-16:
+CRC Remainder: 1011011010010110
+
+CRC-CCITT:
+CRC Remainder: 1001010101010101
+

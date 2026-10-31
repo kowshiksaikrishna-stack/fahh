@@ -1,0 +1,105 @@
+
+#include <stdio.h>
+
+#define INF 9999
+#define MAX 10
+
+void dijkstra(int cost[MAX][MAX], int n, int source)
+{
+    int distance[MAX], visited[MAX];
+    int i, j, count, min, next;
+
+    for(i = 0; i < n; i++)
+    {
+        distance[i] = cost[source][i];
+        visited[i] = 0;
+    }
+
+    distance[source] = 0;
+    visited[source] = 1;
+
+    for(count = 1; count < n; count++)
+    {
+        min = INF;
+        next = -1;
+
+        for(i = 0; i < n; i++)
+        {
+            if(!visited[i] && distance[i] < min)
+            {
+                min = distance[i];
+                next = i;
+            }
+        }
+
+        if(next == -1)
+            break;
+
+        visited[next] = 1;
+
+        for(i = 0; i < n; i++)
+        {
+            if(!visited[i] &&
+               cost[next][i] != INF &&
+               distance[next] + cost[next][i] < distance[i])
+            {
+                distance[i] =
+                    distance[next] + cost[next][i];
+            }
+        }
+    }
+
+    printf("\nShortest distances from source %d:\n", source);
+
+    for(i = 0; i < n; i++)
+    {
+        if(distance[i] == INF)
+            printf("Vertex %d : Unreachable\n", i);
+        else
+            printf("Vertex %d : %d\n", i, distance[i]);
+    }
+}
+
+int main()
+{
+    int cost[MAX][MAX];
+    int n, source, i, j;
+
+    printf("Enter number of vertices: ");
+    scanf("%d", &n);
+
+    printf("Enter the cost adjacency matrix:\n");
+
+    for(i = 0; i < n; i++)
+    {
+        for(j = 0; j < n; j++)
+        {
+            scanf("%d", &cost[i][j]);
+
+            if(cost[i][j] == 0 && i != j)
+                cost[i][j] = INF;
+        }
+    }
+
+    printf("Enter source vertex: ");
+    scanf("%d", &source);
+
+    dijkstra(cost, n, source);
+
+    return 0;
+}
+
+
+output:
+
+Enter number of vertices: 4
+
+Enter the cost adjacency matrix:
+
+0  4  1  0
+4  0  2  5
+1  2  0  8
+0  5  8  0
+
+Enter source vertex: 0
+

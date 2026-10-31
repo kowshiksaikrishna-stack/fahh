@@ -1,0 +1,84 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int n, w, i, j;
+
+    printf("Enter the number of frames: ");
+    scanf("%d", &n);
+
+    printf("Enter the window size: ");
+    scanf("%d", &w);
+
+    int ack[100] = {0};
+
+    printf("\nSelective Repeat Sliding Window Protocol\n");
+
+    for(i = 0; i < n; i += w)
+    {
+        printf("\nSending frames:\n");
+
+        for(j = i; j < i + w && j < n; j++)
+        {
+            printf("Frame %d sent\n", j);
+        }
+
+        printf("\nEnter ACK (1=Received, 0=Lost):\n");
+
+        for(j = i; j < i + w && j < n; j++)
+        {
+            printf("ACK for Frame %d: ", j);
+            scanf("%d", &ack[j]);
+        }
+
+        printf("\nRetransmitting lost frames:\n");
+
+        for(j = i; j < i + w && j < n; j++)
+        {
+            if(ack[j] == 0)
+            {
+                printf("Frame %d retransmitted\n", j);
+                printf("ACK received for Frame %d\n", j);
+            }
+        }
+    }
+
+    printf("\nAll frames transmitted successfully!\n");
+
+    return 0;
+}
+
+
+output:
+
+Enter the number of frames: 5
+Enter the window size: 3
+
+Selective Repeat Sliding Window Protocol
+
+Sending frames:
+Frame 0 sent
+Frame 1 sent
+Frame 2 sent
+
+Enter ACK (1=Received, 0=Lost):
+ACK for Frame 0: 1
+ACK for Frame 1: 0
+ACK for Frame 2: 1
+
+Retransmitting lost frames:
+Frame 1 retransmitted
+ACK received for Frame 1
+
+Sending frames:
+Frame 3 sent
+Frame 4 sent
+
+Enter ACK (1=Received, 0=Lost):
+ACK for Frame 3: 1
+ACK for Frame 4: 1
+
+Retransmitting lost frames:
+
+All frames transmitted successfully!
